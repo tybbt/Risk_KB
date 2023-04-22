@@ -1,4 +1,4 @@
-GET http://localhost:8080/hello
-Accept: application/json
+GET http://localhost:8881/category/list
+#Accept: application/json
 
 ###

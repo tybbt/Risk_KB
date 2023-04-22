@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @ComponentScan("com.tybbt")
 @SpringBootApplication
-@MapperScan("com.tybbt.risk.mapper")
+@MapperScan("com.tybbt.risk_kb.mapper")
 public class RiskKbApplication {
 
     public static void main(String[] args) {
