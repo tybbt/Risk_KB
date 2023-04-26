@@ -1,4 +1,4 @@
-GET http://localhost:8881/category/search?name=税号
+GET http://localhost:8080/category/list
 #Accept: application/json
 
 ###

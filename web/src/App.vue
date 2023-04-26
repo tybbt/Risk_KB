@@ -1,30 +1,24 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view/>
+  <a-layout style="min-height: 100vh">
+    <the-sider></the-sider>
+    <a-layout>
+      <the-header></the-header>
+        <router-view/>
+      <the-footer></the-footer>
+    </a-layout>
+  </a-layout>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script lang="ts">
+import { defineComponent} from 'vue';
+import TheSider from "@/components/the-sider.vue";
+import TheHeader from "@/components/the-header.vue";
+import TheFooter from "@/components/the-footer.vue"
+export default defineComponent({
+  name: 'app',
+  components: {
+    TheSider,
+    TheHeader,
+    TheFooter
+  }
+});
+</script>

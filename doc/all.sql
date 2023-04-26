@@ -14,6 +14,7 @@ drop table if exists user;
 create table user (
                           id bigint not null comment 'id',
                           `name` varchar(50) comment '姓名',
+                          `password` varchar(50) comment '密码',
                           age int comment '年龄',
                           employee_id bigint not null comment '工号',
                           department varchar(50) comment '部门',
@@ -38,6 +39,13 @@ create table knowledge_management (
                       primary key (id)
 ) engine=innodb default charset=utf8mb4 comment='风险知识管理';
 
+drop table if exists knowledge;
+create table knowledge (
+                            id bigint not null comment 'id',
+                            params varchar(150) comment '参数',
+                            `values` varchar(150) comment '内容',
+                            primary key (id)
+) engine=innodb default charset=utf8mb4 comment='风险知识';
 
 drop table if exists tax_report;
 create table tax_report (

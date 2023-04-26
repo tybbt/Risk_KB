@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.tybbt.risk_kb.domain.User">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="employee_id" jdbcType="BIGINT" property="employeeId" />
     <result column="department" jdbcType="VARCHAR" property="department" />
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `name`, age, employee_id, department, auth_level
+    id, `name`, `password`, age, employee_id, department, auth_level
   </sql>
   <select id="selectByExample" parameterType="com.tybbt.risk_kb.domain.UserExample" resultMap="BaseResultMap">
     select
@@ -101,12 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tybbt.risk_kb.domain.User">
-    insert into user (id, `name`, age, 
-      employee_id, department, auth_level
-      )
-    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, 
-      #{employeeId,jdbcType=BIGINT}, #{department,jdbcType=VARCHAR}, #{authLevel,jdbcType=INTEGER}
-      )
+    insert into user (id, `name`, `password`, 
+      age, employee_id, department, 
+      auth_level)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{employeeId,jdbcType=BIGINT}, #{department,jdbcType=VARCHAR}, 
+      #{authLevel,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.tybbt.risk_kb.domain.User">
     insert into user
@@ -116,6 +117,9 @@
       </if>
       <if test="name != null">
         `name`,
+      </if>
+      <if test="password != null">
+        `password`,
       </if>
       <if test="age != null">
         age,
@@ -136,6 +140,9 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
         #{age,jdbcType=INTEGER},
@@ -166,6 +173,9 @@
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.password != null">
+        `password` = #{record.password,jdbcType=VARCHAR},
+      </if>
       <if test="record.age != null">
         age = #{record.age,jdbcType=INTEGER},
       </if>
@@ -187,6 +197,7 @@
     update user
     set id = #{record.id,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
+      `password` = #{record.password,jdbcType=VARCHAR},
       age = #{record.age,jdbcType=INTEGER},
       employee_id = #{record.employeeId,jdbcType=BIGINT},
       department = #{record.department,jdbcType=VARCHAR},
@@ -200,6 +211,9 @@
     <set>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
       </if>
       <if test="age != null">
         age = #{age,jdbcType=INTEGER},
@@ -219,6 +233,7 @@
   <update id="updateByPrimaryKey" parameterType="com.tybbt.risk_kb.domain.User">
     update user
     set `name` = #{name,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
       age = #{age,jdbcType=INTEGER},
       employee_id = #{employeeId,jdbcType=BIGINT},
       department = #{department,jdbcType=VARCHAR},

@@ -1,6 +1,6 @@
 package com.tybbt.risk_kb.req;
 
-public class CategorySearchReq {
+public class CategorySearchReq extends PageReq{
 
     private String name;
 

@@ -5,6 +5,8 @@ public class User {
 
     private String name;
 
+    private String password;
+
     private Integer age;
 
     private Long employeeId;
@@ -27,6 +29,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getAge() {
@@ -69,6 +79,7 @@ public class User {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
+        sb.append(", password=").append(password);
         sb.append(", age=").append(age);
         sb.append(", employeeId=").append(employeeId);
         sb.append(", department=").append(department);

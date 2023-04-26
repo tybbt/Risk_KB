@@ -1,15 +1,16 @@
 package com.tybbt.risk_kb.controller;
 
-import com.tybbt.risk_kb.domain.Category;
+import com.tybbt.risk_kb.req.CategoryQueryReq;
 import com.tybbt.risk_kb.req.CategorySaveReq;
 import com.tybbt.risk_kb.req.CategorySearchReq;
 import com.tybbt.risk_kb.req.CategoryUpdateReq;
+import com.tybbt.risk_kb.resp.CategoryQueryResp;
 import com.tybbt.risk_kb.resp.CommonResp;
+import com.tybbt.risk_kb.resp.PageResp;
 import com.tybbt.risk_kb.service.CategoryService;
 import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/category")
@@ -18,15 +19,18 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping("/list")
-    public List<Category> list() {
-        return categoryService.list();
+    public CommonResp<PageResp<CategoryQueryResp>> list(@Valid CategoryQueryReq req) {
+        CommonResp<PageResp<CategoryQueryResp>> resp = new CommonResp<>();
+        PageResp<CategoryQueryResp> list = categoryService.list(req);
+        resp.setContent(list);
+        return resp;
     }
 
     @GetMapping("/search")
-    public CommonResp<List<Category>> search(CategorySearchReq req) {
-        CommonResp<List<Category>> resp = new CommonResp<>();
-        List<Category> result = categoryService.search(req);
-        resp.setContent(result);
+    public CommonResp<PageResp<CategoryQueryResp>> search(CategorySearchReq req) {
+        CommonResp<PageResp<CategoryQueryResp>> resp = new CommonResp<>();
+        PageResp<CategoryQueryResp> list = categoryService.search(req);
+        resp.setContent(list);
         return resp;
     }
     @PostMapping("/save")
