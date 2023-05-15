@@ -1,14 +1,14 @@
 package com.tybbt.risk_kb.controller;
 
 import com.tybbt.risk_kb.domain.KnowledgeManagement;
-import com.tybbt.risk_kb.req.KnowledgeManagementSaveReq;
-import com.tybbt.risk_kb.req.TaxMisreportListReq;
-import com.tybbt.risk_kb.req.TaxMisreportSaveReq;
+import com.tybbt.risk_kb.req.*;
 import com.tybbt.risk_kb.resp.CommonResp;
 import com.tybbt.risk_kb.resp.PageResp;
 import com.tybbt.risk_kb.resp.TaxMisreportListResp;
+import com.tybbt.risk_kb.resp.TaxReportListResp;
 import com.tybbt.risk_kb.service.KnowledgeManagementService;
 import com.tybbt.risk_kb.service.KnowledgeTaxMisreportService;
+import com.tybbt.risk_kb.service.KnowledgeTaxReportService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,4 +77,34 @@ public class KnowledgeController {
         knowledgeTaxMisreportService.delete(id);
         return resp;
     }
+
+    //税号误报风险知识（白样本）
+    @Resource
+    private KnowledgeTaxReportService knowledgeTaxReportService;
+
+    @GetMapping("/taxReport/list")
+    public CommonResp<PageResp<TaxReportListResp>> listTaxReport(@RequestBody TaxReportListReq req) {
+        CommonResp<PageResp<TaxReportListResp>> resp = new CommonResp<>();
+        PageResp<TaxReportListResp> pageResp = knowledgeTaxReportService.list(req);
+        resp.setContent(pageResp);
+        return resp;
+    }
+
+    @PostMapping("/taxReport/save")
+    public CommonResp saveTaxReport(@RequestBody TaxReportSaveReq req) {
+        CommonResp resp = new CommonResp<>();
+        knowledgeTaxReportService.save(req);
+        return resp;
+    }
+
+    @DeleteMapping("/taxReport/delete/{id}")
+    public CommonResp deleteTaxReport(@PathVariable Long id) {
+        CommonResp resp = new CommonResp<>();
+        knowledgeTaxReportService.delete(id);
+        return resp;
+    }
+
+    // 商品信息风险知识
+
+
 }
