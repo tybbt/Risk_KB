@@ -8,13 +8,20 @@ public class CategoryQueryResp {
     private Long id;
     @JsonSerialize(using = ToStringSerializer.class)
     private Long parent;
-
     private String name;
 
-    private Integer sort;
+    private String description;
 
     public Long getId() {
         return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setId(Long id) {
@@ -37,25 +44,14 @@ public class CategoryQueryResp {
         this.name = name;
     }
 
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", parent=").append(parent);
-        sb.append(", name=").append(name);
-        sb.append(", sort=").append(sort);
-        sb.append("]");
-        return sb.toString();
+        return "CategoryQueryResp{" +
+                "id=" + id +
+                ", parent=" + parent +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

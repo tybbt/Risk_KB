@@ -364,63 +364,63 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdIsNull() {
-            addCriterion("employee_id is null");
+        public Criteria andEmployeeidIsNull() {
+            addCriterion("employeeId is null");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdIsNotNull() {
-            addCriterion("employee_id is not null");
+        public Criteria andEmployeeidIsNotNull() {
+            addCriterion("employeeId is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdEqualTo(Long value) {
-            addCriterion("employee_id =", value, "employeeId");
+        public Criteria andEmployeeidEqualTo(Long value) {
+            addCriterion("employeeId =", value, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdNotEqualTo(Long value) {
-            addCriterion("employee_id <>", value, "employeeId");
+        public Criteria andEmployeeidNotEqualTo(Long value) {
+            addCriterion("employeeId <>", value, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdGreaterThan(Long value) {
-            addCriterion("employee_id >", value, "employeeId");
+        public Criteria andEmployeeidGreaterThan(Long value) {
+            addCriterion("employeeId >", value, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("employee_id >=", value, "employeeId");
+        public Criteria andEmployeeidGreaterThanOrEqualTo(Long value) {
+            addCriterion("employeeId >=", value, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdLessThan(Long value) {
-            addCriterion("employee_id <", value, "employeeId");
+        public Criteria andEmployeeidLessThan(Long value) {
+            addCriterion("employeeId <", value, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdLessThanOrEqualTo(Long value) {
-            addCriterion("employee_id <=", value, "employeeId");
+        public Criteria andEmployeeidLessThanOrEqualTo(Long value) {
+            addCriterion("employeeId <=", value, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdIn(List<Long> values) {
-            addCriterion("employee_id in", values, "employeeId");
+        public Criteria andEmployeeidIn(List<Long> values) {
+            addCriterion("employeeId in", values, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdNotIn(List<Long> values) {
-            addCriterion("employee_id not in", values, "employeeId");
+        public Criteria andEmployeeidNotIn(List<Long> values) {
+            addCriterion("employeeId not in", values, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdBetween(Long value1, Long value2) {
-            addCriterion("employee_id between", value1, value2, "employeeId");
+        public Criteria andEmployeeidBetween(Long value1, Long value2) {
+            addCriterion("employeeId between", value1, value2, "employeeid");
             return (Criteria) this;
         }
 
-        public Criteria andEmployeeIdNotBetween(Long value1, Long value2) {
-            addCriterion("employee_id not between", value1, value2, "employeeId");
+        public Criteria andEmployeeidNotBetween(Long value1, Long value2) {
+            addCriterion("employeeId not between", value1, value2, "employeeid");
             return (Criteria) this;
         }
 
@@ -494,63 +494,63 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelIsNull() {
-            addCriterion("auth_level is null");
+        public Criteria andAuthlevelIsNull() {
+            addCriterion("authLevel is null");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelIsNotNull() {
-            addCriterion("auth_level is not null");
+        public Criteria andAuthlevelIsNotNull() {
+            addCriterion("authLevel is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelEqualTo(Integer value) {
-            addCriterion("auth_level =", value, "authLevel");
+        public Criteria andAuthlevelEqualTo(Integer value) {
+            addCriterion("authLevel =", value, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelNotEqualTo(Integer value) {
-            addCriterion("auth_level <>", value, "authLevel");
+        public Criteria andAuthlevelNotEqualTo(Integer value) {
+            addCriterion("authLevel <>", value, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelGreaterThan(Integer value) {
-            addCriterion("auth_level >", value, "authLevel");
+        public Criteria andAuthlevelGreaterThan(Integer value) {
+            addCriterion("authLevel >", value, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelGreaterThanOrEqualTo(Integer value) {
-            addCriterion("auth_level >=", value, "authLevel");
+        public Criteria andAuthlevelGreaterThanOrEqualTo(Integer value) {
+            addCriterion("authLevel >=", value, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelLessThan(Integer value) {
-            addCriterion("auth_level <", value, "authLevel");
+        public Criteria andAuthlevelLessThan(Integer value) {
+            addCriterion("authLevel <", value, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelLessThanOrEqualTo(Integer value) {
-            addCriterion("auth_level <=", value, "authLevel");
+        public Criteria andAuthlevelLessThanOrEqualTo(Integer value) {
+            addCriterion("authLevel <=", value, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelIn(List<Integer> values) {
-            addCriterion("auth_level in", values, "authLevel");
+        public Criteria andAuthlevelIn(List<Integer> values) {
+            addCriterion("authLevel in", values, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelNotIn(List<Integer> values) {
-            addCriterion("auth_level not in", values, "authLevel");
+        public Criteria andAuthlevelNotIn(List<Integer> values) {
+            addCriterion("authLevel not in", values, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelBetween(Integer value1, Integer value2) {
-            addCriterion("auth_level between", value1, value2, "authLevel");
+        public Criteria andAuthlevelBetween(Integer value1, Integer value2) {
+            addCriterion("authLevel between", value1, value2, "authlevel");
             return (Criteria) this;
         }
 
-        public Criteria andAuthLevelNotBetween(Integer value1, Integer value2) {
-            addCriterion("auth_level not between", value1, value2, "authLevel");
+        public Criteria andAuthlevelNotBetween(Integer value1, Integer value2) {
+            addCriterion("authLevel not between", value1, value2, "authlevel");
             return (Criteria) this;
         }
     }

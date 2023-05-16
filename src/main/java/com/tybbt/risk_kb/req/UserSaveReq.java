@@ -5,30 +5,43 @@ import jakarta.validation.constraints.Pattern;
 
 public class UserSaveReq {
 
-    private Long id;
     @NotNull(message = "[登录名不能为空]")
-    private String loginName;
-    @NotNull(message = "[昵称不能为空]")
     private String name;
+
     @NotNull(message = "[密码不能为空]")
     @Pattern(regexp = "^(?![0-9]+$)[0-9A-Za-z]{6,32}$", message = "[密码]至少包含数字和英文，长度6-32")
     private String password;
 
-    public Long getId() {
-        return id;
+    private Integer age;
+
+    @NotNull(message = "[工号不能为空]")
+    private Long employeeid;
+
+    public Integer getAge() {
+        return age;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public Long getEmployeeid() {
+        return employeeid;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setEmployeeid(Long employeeId) {
+        this.employeeid = employeeId;
     }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    private String department;
 
     public String getName() {
         return name;
@@ -48,15 +61,12 @@ public class UserSaveReq {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", loginName=").append(loginName);
-        sb.append(", name=").append(name);
-        sb.append(", password=").append(password);
-        sb.append("]");
-        return sb.toString();
+        return "UserSaveReq{" +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", age=" + age +
+                ", employeeId=" + employeeid +
+                ", department='" + department + '\'' +
+                '}';
     }
 }

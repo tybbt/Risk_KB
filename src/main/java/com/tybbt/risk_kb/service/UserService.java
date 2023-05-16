@@ -75,10 +75,12 @@ public class UserService {
 
     public void save(UserSaveReq req) {
         User user = CopyUtil.copy(req, User.class);
+        System.out.println(user);
         if (ObjectUtils.isEmpty(user.getId())) {
-            if (ObjectUtils.isEmpty(selectByLoginName(req.getLoginName()))) {
+            if (ObjectUtils.isEmpty(selectByLoginName(req.getName()))) {
                 // 自增，uuid，雪花
                 user.setId(snowFlake.nextId());
+                user.setAuthlevel(2);
                 userMapper.insert(user);
             } else {
                 throw new BusinessException(BusinessExceptionCode.USER_LOGIN_NAME_EXIST);

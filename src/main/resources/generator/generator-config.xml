@@ -46,9 +46,9 @@
 <!--        <table tableName="commodity_information"/>-->
 <!--        <table tableName="extraction_schema"/>-->
 <!--        <table tableName="extraction_task"/>-->
-<!--        <table tableName="knowledge_management"/>-->
+        <table tableName="knowledge_management"/>
 <!--        <table tableName="tax_misreport"/>-->
 <!--        <table tableName="tax_report"/>-->
-        <table tableName="user"/>
+<!--        <table tableName="user"/>-->
     </context>
 </generatorConfiguration>

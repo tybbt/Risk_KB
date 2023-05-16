@@ -17,15 +17,17 @@ public class KnowledgeManagement {
 
     private Date expireTime;
 
-    private Long manager;
+    private String manager;
 
-    private Long reviewer1;
+    private String reviewer1;
 
-    private Long reviewer2;
+    private String reviewer2;
 
-    private Long reviewer3;
+    private String reviewer3;
 
     private Integer number;
+
+    private Float useratio;
 
     public Long getId() {
         return id;
@@ -83,35 +85,35 @@ public class KnowledgeManagement {
         this.expireTime = expireTime;
     }
 
-    public Long getManager() {
+    public String getManager() {
         return manager;
     }
 
-    public void setManager(Long manager) {
+    public void setManager(String manager) {
         this.manager = manager;
     }
 
-    public Long getReviewer1() {
+    public String getReviewer1() {
         return reviewer1;
     }
 
-    public void setReviewer1(Long reviewer1) {
+    public void setReviewer1(String reviewer1) {
         this.reviewer1 = reviewer1;
     }
 
-    public Long getReviewer2() {
+    public String getReviewer2() {
         return reviewer2;
     }
 
-    public void setReviewer2(Long reviewer2) {
+    public void setReviewer2(String reviewer2) {
         this.reviewer2 = reviewer2;
     }
 
-    public Long getReviewer3() {
+    public String getReviewer3() {
         return reviewer3;
     }
 
-    public void setReviewer3(Long reviewer3) {
+    public void setReviewer3(String reviewer3) {
         this.reviewer3 = reviewer3;
     }
 
@@ -121,6 +123,14 @@ public class KnowledgeManagement {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public Float getUseratio() {
+        return useratio;
+    }
+
+    public void setUseratio(Float useratio) {
+        this.useratio = useratio;
     }
 
     @Override
@@ -141,6 +151,7 @@ public class KnowledgeManagement {
         sb.append(", reviewer2=").append(reviewer2);
         sb.append(", reviewer3=").append(reviewer3);
         sb.append(", number=").append(number);
+        sb.append(", useratio=").append(useratio);
         sb.append("]");
         return sb.toString();
     }

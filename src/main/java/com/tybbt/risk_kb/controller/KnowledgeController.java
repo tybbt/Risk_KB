@@ -2,10 +2,8 @@ package com.tybbt.risk_kb.controller;
 
 import com.tybbt.risk_kb.domain.KnowledgeManagement;
 import com.tybbt.risk_kb.req.*;
-import com.tybbt.risk_kb.resp.CommonResp;
-import com.tybbt.risk_kb.resp.PageResp;
-import com.tybbt.risk_kb.resp.TaxMisreportListResp;
-import com.tybbt.risk_kb.resp.TaxReportListResp;
+import com.tybbt.risk_kb.resp.*;
+import com.tybbt.risk_kb.service.KnowledgeCommodityService;
 import com.tybbt.risk_kb.service.KnowledgeManagementService;
 import com.tybbt.risk_kb.service.KnowledgeTaxMisreportService;
 import com.tybbt.risk_kb.service.KnowledgeTaxReportService;
@@ -105,6 +103,29 @@ public class KnowledgeController {
     }
 
     // 商品信息风险知识
+    @Resource
+    private KnowledgeCommodityService knowledgeCommodityService;
 
+    @GetMapping("/commodityInfo/list")
+    public CommonResp<PageResp<CommodityInfoListResp>> listCommodityInfo(@RequestBody CommodityInfoListReq req) {
+        CommonResp<PageResp<CommodityInfoListResp>> resp = new CommonResp<>();
+        PageResp<CommodityInfoListResp> pageResp = knowledgeCommodityService.list(req);
+        resp.setContent(pageResp);
+        return resp;
+    }
+
+    @PostMapping("/commodityInfo/save")
+    public CommonResp saveCommodityInfo(@RequestBody CommodityInfoSaveReq req) {
+        CommonResp resp = new CommonResp<>();
+        knowledgeCommodityService.save(req);
+        return resp;
+    }
+
+    @DeleteMapping("/commodityInfo/delete/{id}")
+    public CommonResp deleteCommodityInfo(@PathVariable Long id) {
+        CommonResp resp = new CommonResp<>();
+        knowledgeCommodityService.delete(id);
+        return resp;
+    }
 
 }

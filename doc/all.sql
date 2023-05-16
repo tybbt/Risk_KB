@@ -16,11 +16,13 @@ create table user (
                           `name` varchar(50) comment '姓名',
                           `password` varchar(50) comment '密码',
                           age int comment '年龄',
-                          employee_id bigint not null comment '工号',
+                          employeeId bigint not null comment '工号',
                           department varchar(50) comment '部门',
-                          auth_level int comment '权限等级',
+                          authLevel int comment '权限等级',
                           primary key (id)
 ) engine=innodb default charset=utf8mb4 comment='用户';
+
+insert into user (id, name, password, age, employeeId, department, authLevel) values (0, '税务专家', 'zxc123456', 12, 2020571, '税管局', 2);
 
 drop table if exists knowledge_management;
 create table knowledge_management (
@@ -31,13 +33,18 @@ create table knowledge_management (
                       link_table_name varchar(50) comment '明细表名称',
                       activate_time DATE comment '启用时间',
                       expire_time DATE comment '截止时间',
-                      manager bigint not null comment '负责人',
-                      reviewer1 bigint comment '关联负责人1',
-                      reviewer2 bigint comment '关联负责人2',
-                      reviewer3 bigint comment '关联负责人3',
+                      manager varchar(50) not null comment '负责人',
+                      reviewer1 varchar(50) comment '关联负责人1',
+                      reviewer2 varchar(50) comment '关联负责人2',
+                      reviewer3 varchar(50) comment '关联负责人3',
                       `number` int default 0 comment '条目数',
+                      useRatio float default 0.0 comment '可用比',
                       primary key (id)
 ) engine=innodb default charset=utf8mb4 comment='风险知识管理';
+
+insert into knowledge_management (id, name, state, category, link_table_name, activate_time, expire_time, manager, reviewer1, `number`, useRatio) VALUES (0, '纸类价格风险知识', 1, '商品要素风险知识', 'commodity_information', '2022-01-13', '2024-09-01', '税务专家2', '税务专家1', 2, 12.1);
+insert into knowledge_management (id, name, state, category, link_table_name, activate_time, expire_time, manager, reviewer1, `number`, useRatio) VALUES (1, '箱板纸风险知识', 1, '商品要素风险知识', 'commodity_information', '2021-09-01', '2024-09-01', '税务专家2', '税务专家1', 2, 12.1);
+
 
 drop table if exists knowledge;
 create table knowledge (

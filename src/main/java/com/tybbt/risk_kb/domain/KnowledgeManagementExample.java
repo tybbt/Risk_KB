@@ -592,52 +592,62 @@ public class KnowledgeManagementExample {
             return (Criteria) this;
         }
 
-        public Criteria andManagerEqualTo(Long value) {
+        public Criteria andManagerEqualTo(String value) {
             addCriterion("manager =", value, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerNotEqualTo(Long value) {
+        public Criteria andManagerNotEqualTo(String value) {
             addCriterion("manager <>", value, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerGreaterThan(Long value) {
+        public Criteria andManagerGreaterThan(String value) {
             addCriterion("manager >", value, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerGreaterThanOrEqualTo(Long value) {
+        public Criteria andManagerGreaterThanOrEqualTo(String value) {
             addCriterion("manager >=", value, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerLessThan(Long value) {
+        public Criteria andManagerLessThan(String value) {
             addCriterion("manager <", value, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerLessThanOrEqualTo(Long value) {
+        public Criteria andManagerLessThanOrEqualTo(String value) {
             addCriterion("manager <=", value, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerIn(List<Long> values) {
+        public Criteria andManagerLike(String value) {
+            addCriterion("manager like", value, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerNotLike(String value) {
+            addCriterion("manager not like", value, "manager");
+            return (Criteria) this;
+        }
+
+        public Criteria andManagerIn(List<String> values) {
             addCriterion("manager in", values, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerNotIn(List<Long> values) {
+        public Criteria andManagerNotIn(List<String> values) {
             addCriterion("manager not in", values, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerBetween(Long value1, Long value2) {
+        public Criteria andManagerBetween(String value1, String value2) {
             addCriterion("manager between", value1, value2, "manager");
             return (Criteria) this;
         }
 
-        public Criteria andManagerNotBetween(Long value1, Long value2) {
+        public Criteria andManagerNotBetween(String value1, String value2) {
             addCriterion("manager not between", value1, value2, "manager");
             return (Criteria) this;
         }
@@ -652,52 +662,62 @@ public class KnowledgeManagementExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1EqualTo(Long value) {
+        public Criteria andReviewer1EqualTo(String value) {
             addCriterion("reviewer1 =", value, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1NotEqualTo(Long value) {
+        public Criteria andReviewer1NotEqualTo(String value) {
             addCriterion("reviewer1 <>", value, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1GreaterThan(Long value) {
+        public Criteria andReviewer1GreaterThan(String value) {
             addCriterion("reviewer1 >", value, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1GreaterThanOrEqualTo(Long value) {
+        public Criteria andReviewer1GreaterThanOrEqualTo(String value) {
             addCriterion("reviewer1 >=", value, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1LessThan(Long value) {
+        public Criteria andReviewer1LessThan(String value) {
             addCriterion("reviewer1 <", value, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1LessThanOrEqualTo(Long value) {
+        public Criteria andReviewer1LessThanOrEqualTo(String value) {
             addCriterion("reviewer1 <=", value, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1In(List<Long> values) {
+        public Criteria andReviewer1Like(String value) {
+            addCriterion("reviewer1 like", value, "reviewer1");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewer1NotLike(String value) {
+            addCriterion("reviewer1 not like", value, "reviewer1");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewer1In(List<String> values) {
             addCriterion("reviewer1 in", values, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1NotIn(List<Long> values) {
+        public Criteria andReviewer1NotIn(List<String> values) {
             addCriterion("reviewer1 not in", values, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1Between(Long value1, Long value2) {
+        public Criteria andReviewer1Between(String value1, String value2) {
             addCriterion("reviewer1 between", value1, value2, "reviewer1");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer1NotBetween(Long value1, Long value2) {
+        public Criteria andReviewer1NotBetween(String value1, String value2) {
             addCriterion("reviewer1 not between", value1, value2, "reviewer1");
             return (Criteria) this;
         }
@@ -712,52 +732,62 @@ public class KnowledgeManagementExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2EqualTo(Long value) {
+        public Criteria andReviewer2EqualTo(String value) {
             addCriterion("reviewer2 =", value, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2NotEqualTo(Long value) {
+        public Criteria andReviewer2NotEqualTo(String value) {
             addCriterion("reviewer2 <>", value, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2GreaterThan(Long value) {
+        public Criteria andReviewer2GreaterThan(String value) {
             addCriterion("reviewer2 >", value, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2GreaterThanOrEqualTo(Long value) {
+        public Criteria andReviewer2GreaterThanOrEqualTo(String value) {
             addCriterion("reviewer2 >=", value, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2LessThan(Long value) {
+        public Criteria andReviewer2LessThan(String value) {
             addCriterion("reviewer2 <", value, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2LessThanOrEqualTo(Long value) {
+        public Criteria andReviewer2LessThanOrEqualTo(String value) {
             addCriterion("reviewer2 <=", value, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2In(List<Long> values) {
+        public Criteria andReviewer2Like(String value) {
+            addCriterion("reviewer2 like", value, "reviewer2");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewer2NotLike(String value) {
+            addCriterion("reviewer2 not like", value, "reviewer2");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewer2In(List<String> values) {
             addCriterion("reviewer2 in", values, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2NotIn(List<Long> values) {
+        public Criteria andReviewer2NotIn(List<String> values) {
             addCriterion("reviewer2 not in", values, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2Between(Long value1, Long value2) {
+        public Criteria andReviewer2Between(String value1, String value2) {
             addCriterion("reviewer2 between", value1, value2, "reviewer2");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer2NotBetween(Long value1, Long value2) {
+        public Criteria andReviewer2NotBetween(String value1, String value2) {
             addCriterion("reviewer2 not between", value1, value2, "reviewer2");
             return (Criteria) this;
         }
@@ -772,52 +802,62 @@ public class KnowledgeManagementExample {
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3EqualTo(Long value) {
+        public Criteria andReviewer3EqualTo(String value) {
             addCriterion("reviewer3 =", value, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3NotEqualTo(Long value) {
+        public Criteria andReviewer3NotEqualTo(String value) {
             addCriterion("reviewer3 <>", value, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3GreaterThan(Long value) {
+        public Criteria andReviewer3GreaterThan(String value) {
             addCriterion("reviewer3 >", value, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3GreaterThanOrEqualTo(Long value) {
+        public Criteria andReviewer3GreaterThanOrEqualTo(String value) {
             addCriterion("reviewer3 >=", value, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3LessThan(Long value) {
+        public Criteria andReviewer3LessThan(String value) {
             addCriterion("reviewer3 <", value, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3LessThanOrEqualTo(Long value) {
+        public Criteria andReviewer3LessThanOrEqualTo(String value) {
             addCriterion("reviewer3 <=", value, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3In(List<Long> values) {
+        public Criteria andReviewer3Like(String value) {
+            addCriterion("reviewer3 like", value, "reviewer3");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewer3NotLike(String value) {
+            addCriterion("reviewer3 not like", value, "reviewer3");
+            return (Criteria) this;
+        }
+
+        public Criteria andReviewer3In(List<String> values) {
             addCriterion("reviewer3 in", values, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3NotIn(List<Long> values) {
+        public Criteria andReviewer3NotIn(List<String> values) {
             addCriterion("reviewer3 not in", values, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3Between(Long value1, Long value2) {
+        public Criteria andReviewer3Between(String value1, String value2) {
             addCriterion("reviewer3 between", value1, value2, "reviewer3");
             return (Criteria) this;
         }
 
-        public Criteria andReviewer3NotBetween(Long value1, Long value2) {
+        public Criteria andReviewer3NotBetween(String value1, String value2) {
             addCriterion("reviewer3 not between", value1, value2, "reviewer3");
             return (Criteria) this;
         }
@@ -879,6 +919,66 @@ public class KnowledgeManagementExample {
 
         public Criteria andNumberNotBetween(Integer value1, Integer value2) {
             addCriterion("`number` not between", value1, value2, "number");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioIsNull() {
+            addCriterion("useRatio is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioIsNotNull() {
+            addCriterion("useRatio is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioEqualTo(Float value) {
+            addCriterion("useRatio =", value, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioNotEqualTo(Float value) {
+            addCriterion("useRatio <>", value, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioGreaterThan(Float value) {
+            addCriterion("useRatio >", value, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioGreaterThanOrEqualTo(Float value) {
+            addCriterion("useRatio >=", value, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioLessThan(Float value) {
+            addCriterion("useRatio <", value, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioLessThanOrEqualTo(Float value) {
+            addCriterion("useRatio <=", value, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioIn(List<Float> values) {
+            addCriterion("useRatio in", values, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioNotIn(List<Float> values) {
+            addCriterion("useRatio not in", values, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioBetween(Float value1, Float value2) {
+            addCriterion("useRatio between", value1, value2, "useratio");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseratioNotBetween(Float value1, Float value2) {
+            addCriterion("useRatio not between", value1, value2, "useratio");
             return (Criteria) this;
         }
     }

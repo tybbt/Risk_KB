@@ -9,11 +9,11 @@ public class User {
 
     private Integer age;
 
-    private Long employeeId;
+    private Long employeeid;
 
     private String department;
 
-    private Integer authLevel;
+    private Integer authlevel;
 
     public Long getId() {
         return id;
@@ -47,12 +47,12 @@ public class User {
         this.age = age;
     }
 
-    public Long getEmployeeId() {
-        return employeeId;
+    public Long getEmployeeid() {
+        return employeeid;
     }
 
-    public void setEmployeeId(Long employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeid(Long employeeid) {
+        this.employeeid = employeeid;
     }
 
     public String getDepartment() {
@@ -63,12 +63,12 @@ public class User {
         this.department = department;
     }
 
-    public Integer getAuthLevel() {
-        return authLevel;
+    public Integer getAuthlevel() {
+        return authlevel;
     }
 
-    public void setAuthLevel(Integer authLevel) {
-        this.authLevel = authLevel;
+    public void setAuthlevel(Integer authlevel) {
+        this.authlevel = authlevel;
     }
 
     @Override
@@ -81,9 +81,9 @@ public class User {
         sb.append(", name=").append(name);
         sb.append(", password=").append(password);
         sb.append(", age=").append(age);
-        sb.append(", employeeId=").append(employeeId);
+        sb.append(", employeeid=").append(employeeid);
         sb.append(", department=").append(department);
-        sb.append(", authLevel=").append(authLevel);
+        sb.append(", authlevel=").append(authlevel);
         sb.append("]");
         return sb.toString();
     }

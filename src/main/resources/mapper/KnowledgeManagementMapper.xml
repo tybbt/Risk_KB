@@ -9,11 +9,12 @@
     <result column="link_table_name" jdbcType="VARCHAR" property="linkTableName" />
     <result column="activate_time" jdbcType="DATE" property="activateTime" />
     <result column="expire_time" jdbcType="DATE" property="expireTime" />
-    <result column="manager" jdbcType="BIGINT" property="manager" />
-    <result column="reviewer1" jdbcType="BIGINT" property="reviewer1" />
-    <result column="reviewer2" jdbcType="BIGINT" property="reviewer2" />
-    <result column="reviewer3" jdbcType="BIGINT" property="reviewer3" />
+    <result column="manager" jdbcType="VARCHAR" property="manager" />
+    <result column="reviewer1" jdbcType="VARCHAR" property="reviewer1" />
+    <result column="reviewer2" jdbcType="VARCHAR" property="reviewer2" />
+    <result column="reviewer3" jdbcType="VARCHAR" property="reviewer3" />
     <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="useRatio" jdbcType="REAL" property="useratio" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, `name`, `state`, category, link_table_name, activate_time, expire_time, manager, 
-    reviewer1, reviewer2, reviewer3, `number`
+    reviewer1, reviewer2, reviewer3, `number`, useRatio
   </sql>
   <select id="selectByExample" parameterType="com.tybbt.risk_kb.domain.KnowledgeManagementExample" resultMap="BaseResultMap">
     select
@@ -111,13 +112,13 @@
     insert into knowledge_management (id, `name`, `state`, 
       category, link_table_name, activate_time, 
       expire_time, manager, reviewer1, 
-      reviewer2, reviewer3, `number`
-      )
+      reviewer2, reviewer3, `number`, 
+      useRatio)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER}, 
       #{category,jdbcType=VARCHAR}, #{linkTableName,jdbcType=VARCHAR}, #{activateTime,jdbcType=DATE}, 
-      #{expireTime,jdbcType=DATE}, #{manager,jdbcType=BIGINT}, #{reviewer1,jdbcType=BIGINT}, 
-      #{reviewer2,jdbcType=BIGINT}, #{reviewer3,jdbcType=BIGINT}, #{number,jdbcType=INTEGER}
-      )
+      #{expireTime,jdbcType=DATE}, #{manager,jdbcType=VARCHAR}, #{reviewer1,jdbcType=VARCHAR}, 
+      #{reviewer2,jdbcType=VARCHAR}, #{reviewer3,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{useratio,jdbcType=REAL})
   </insert>
   <insert id="insertSelective" parameterType="com.tybbt.risk_kb.domain.KnowledgeManagement">
     insert into knowledge_management
@@ -158,6 +159,9 @@
       <if test="number != null">
         `number`,
       </if>
+      <if test="useratio != null">
+        useRatio,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -182,19 +186,22 @@
         #{expireTime,jdbcType=DATE},
       </if>
       <if test="manager != null">
-        #{manager,jdbcType=BIGINT},
+        #{manager,jdbcType=VARCHAR},
       </if>
       <if test="reviewer1 != null">
-        #{reviewer1,jdbcType=BIGINT},
+        #{reviewer1,jdbcType=VARCHAR},
       </if>
       <if test="reviewer2 != null">
-        #{reviewer2,jdbcType=BIGINT},
+        #{reviewer2,jdbcType=VARCHAR},
       </if>
       <if test="reviewer3 != null">
-        #{reviewer3,jdbcType=BIGINT},
+        #{reviewer3,jdbcType=VARCHAR},
       </if>
       <if test="number != null">
         #{number,jdbcType=INTEGER},
+      </if>
+      <if test="useratio != null">
+        #{useratio,jdbcType=REAL},
       </if>
     </trim>
   </insert>
@@ -229,19 +236,22 @@
         expire_time = #{record.expireTime,jdbcType=DATE},
       </if>
       <if test="record.manager != null">
-        manager = #{record.manager,jdbcType=BIGINT},
+        manager = #{record.manager,jdbcType=VARCHAR},
       </if>
       <if test="record.reviewer1 != null">
-        reviewer1 = #{record.reviewer1,jdbcType=BIGINT},
+        reviewer1 = #{record.reviewer1,jdbcType=VARCHAR},
       </if>
       <if test="record.reviewer2 != null">
-        reviewer2 = #{record.reviewer2,jdbcType=BIGINT},
+        reviewer2 = #{record.reviewer2,jdbcType=VARCHAR},
       </if>
       <if test="record.reviewer3 != null">
-        reviewer3 = #{record.reviewer3,jdbcType=BIGINT},
+        reviewer3 = #{record.reviewer3,jdbcType=VARCHAR},
       </if>
       <if test="record.number != null">
         `number` = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.useratio != null">
+        useRatio = #{record.useratio,jdbcType=REAL},
       </if>
     </set>
     <if test="_parameter != null">
@@ -257,11 +267,12 @@
       link_table_name = #{record.linkTableName,jdbcType=VARCHAR},
       activate_time = #{record.activateTime,jdbcType=DATE},
       expire_time = #{record.expireTime,jdbcType=DATE},
-      manager = #{record.manager,jdbcType=BIGINT},
-      reviewer1 = #{record.reviewer1,jdbcType=BIGINT},
-      reviewer2 = #{record.reviewer2,jdbcType=BIGINT},
-      reviewer3 = #{record.reviewer3,jdbcType=BIGINT},
-      `number` = #{record.number,jdbcType=INTEGER}
+      manager = #{record.manager,jdbcType=VARCHAR},
+      reviewer1 = #{record.reviewer1,jdbcType=VARCHAR},
+      reviewer2 = #{record.reviewer2,jdbcType=VARCHAR},
+      reviewer3 = #{record.reviewer3,jdbcType=VARCHAR},
+      `number` = #{record.number,jdbcType=INTEGER},
+      useRatio = #{record.useratio,jdbcType=REAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -288,19 +299,22 @@
         expire_time = #{expireTime,jdbcType=DATE},
       </if>
       <if test="manager != null">
-        manager = #{manager,jdbcType=BIGINT},
+        manager = #{manager,jdbcType=VARCHAR},
       </if>
       <if test="reviewer1 != null">
-        reviewer1 = #{reviewer1,jdbcType=BIGINT},
+        reviewer1 = #{reviewer1,jdbcType=VARCHAR},
       </if>
       <if test="reviewer2 != null">
-        reviewer2 = #{reviewer2,jdbcType=BIGINT},
+        reviewer2 = #{reviewer2,jdbcType=VARCHAR},
       </if>
       <if test="reviewer3 != null">
-        reviewer3 = #{reviewer3,jdbcType=BIGINT},
+        reviewer3 = #{reviewer3,jdbcType=VARCHAR},
       </if>
       <if test="number != null">
         `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="useratio != null">
+        useRatio = #{useratio,jdbcType=REAL},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -313,11 +327,12 @@
       link_table_name = #{linkTableName,jdbcType=VARCHAR},
       activate_time = #{activateTime,jdbcType=DATE},
       expire_time = #{expireTime,jdbcType=DATE},
-      manager = #{manager,jdbcType=BIGINT},
-      reviewer1 = #{reviewer1,jdbcType=BIGINT},
-      reviewer2 = #{reviewer2,jdbcType=BIGINT},
-      reviewer3 = #{reviewer3,jdbcType=BIGINT},
-      `number` = #{number,jdbcType=INTEGER}
+      manager = #{manager,jdbcType=VARCHAR},
+      reviewer1 = #{reviewer1,jdbcType=VARCHAR},
+      reviewer2 = #{reviewer2,jdbcType=VARCHAR},
+      reviewer3 = #{reviewer3,jdbcType=VARCHAR},
+      `number` = #{number,jdbcType=INTEGER},
+      useRatio = #{useratio,jdbcType=REAL}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

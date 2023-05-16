@@ -10,12 +10,12 @@ import com.tybbt.risk_kb.resp.PageResp;
 import com.tybbt.risk_kb.resp.UserLoginResp;
 import com.tybbt.risk_kb.resp.UserQueryResp;
 import com.tybbt.risk_kb.service.UserService;
+import com.tybbt.risk_kb.util.RedisUtil;
 import com.tybbt.risk_kb.util.SnowFlake;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +33,7 @@ public class UserController {
     private UserService userService;
 
     @Resource
-    private RedisTemplate<Object, Object> redisTemplate;
+    private RedisUtil redisUtil;
 
     @Resource
     private SnowFlake snowFlake;
@@ -88,8 +88,9 @@ public class UserController {
         Long token = snowFlake.nextId();
         LOG.info("生成单点登录token: {}，放入redis, 值为 {}", token.toString(), JSONObject.toJSONString(userLoginResp));
         userLoginResp.setToken(token.toString());
-        redisTemplate.opsForValue().set(token.toString(), JSONObject.toJSONString(userLoginResp), 3600*24, TimeUnit.SECONDS);
-        Object object = redisTemplate.keys("*");
+        redisUtil.writeUser(token.toString(), JSONObject.toJSONString(userLoginResp));
+        RedisUtil.redis.opsForValue().set(token.toString(), JSONObject.toJSONString(userLoginResp), 3600*24, TimeUnit.SECONDS);
+        Object object = RedisUtil.redis.keys("*");
         LOG.info("GET Redis All keys: {}", object);
         resp.setContent(userLoginResp);
         return resp;
@@ -97,7 +98,7 @@ public class UserController {
 
     @GetMapping("/login/all")
     public Object all() {
-        Object object = redisTemplate.keys("*");
+        Object object = RedisUtil.redis.keys("*");
         LOG.info("GET Redis All keys: {}", object);
         return object;
     }
@@ -106,7 +107,20 @@ public class UserController {
     private CommonResp logout(@PathVariable String token) {
         CommonResp resp = new CommonResp<>();
         LOG.info("从redis中删除token {}", token);
-        redisTemplate.delete(token);
+        boolean res = false;
+        if (Boolean.TRUE.equals(RedisUtil.redis.hasKey(token))) {
+            LOG.info("key已存在：{}", token);
+            res = Boolean.TRUE.equals(RedisUtil.redis.delete(token));
+        } else {
+            LOG.info("key不存在");
+        }
+
+        resp.setSuccess(res);
+        if (res) {
+           resp.setMessage("退出成功");
+        } else {
+            resp.setMessage("退出失败");
+        }
         return resp;
     }
 }

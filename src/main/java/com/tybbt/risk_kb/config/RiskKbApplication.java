@@ -13,12 +13,15 @@ import org.springframework.core.env.Environment;
 @MapperScan("com.tybbt.risk_kb.mapper")
 public class RiskKbApplication {
     private static final Logger LOG = LoggerFactory.getLogger(RiskKbApplication.class);
+
     public static void main(String[] args) {
 //        SpringApplication.run(RiskKbApplication.class, args);
+
         SpringApplication app = new SpringApplication(RiskKbApplication.class);
         Environment env = app.run(args).getEnvironment();
         LOG.info("启动成功！！");
         LOG.info("地址: \thttp://127.0.0.1:{}", env.getProperty("server.port"));
+
     }
 
 }
