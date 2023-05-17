@@ -2,6 +2,8 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/Home.vue'
 import ClassManager from '../views/ClassManage.vue'
 import KnowledgeManage from '../views/KnowledgeManage.vue'
+import Statistic from "../views/Statistic.vue";
+import Review from '../views/Review.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -26,8 +28,17 @@ const routes: Array<RouteRecordRaw> = [
     path: '/knowledge-manage',
     name: 'KnowledgeManage',
     component: KnowledgeManage
+  },
+  {
+    path: '/statistic',
+    name: 'Statistic',
+    component: Statistic
+  },
+  {
+    path: '/review',
+    name: 'Review',
+    component: Review
   }
-
 ]
 
 const router = createRouter({

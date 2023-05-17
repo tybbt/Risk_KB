@@ -90,12 +90,14 @@ create table commodity_information (
 drop table if exists extraction_schema;
 create table extraction_schema (
                                id bigint not null comment 'id',
-                               information_type int not null comment '信息类型',
-                               creator bigint not null comment '创建人',
+                               relate_knowledge bigint not null comment '关联知识ID',
+                               creator VARCHAR(50) not null comment '创建人',
                                expire_time DATE comment '失效日期',
                                `schema` varchar(100) comment '抽取框架',
                                primary key (id)
 ) engine=innodb default charset=utf8mb4 comment='抽取框架信息';
+
+insert into extraction_schema (id, relate_knowledge, creator, expire_time, `schema`) VALUES (0, 0, '税务专家2', '2024-09-01', '["gname", "trigger", "entity", "date"]');
 
 drop table if exists extraction_task;
 create table extraction_task (

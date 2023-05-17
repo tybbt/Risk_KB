@@ -37,7 +37,6 @@
     </a-layout-content>
   </a-layout>
 
-
   <a-modal
       title="新增分类"
       v-model:visible="modelVisible"
@@ -71,6 +70,7 @@
 
     </a-form>
   </a-modal>
+
 </template>
 
 <script lang="ts">
@@ -87,6 +87,7 @@ export default defineComponent({
     const hierarchical_class = ref();
     const level1 = ref();
     const loading = ref(false);
+
 
     const columns = [
       {
@@ -215,7 +216,8 @@ export default defineComponent({
       del,
       value,
       onSearch,
-      handleQuery
+      handleQuery,
+
     }
   }
 });

@@ -55,8 +55,10 @@
 <!--      </a-sub-menu>-->
 
       <a-menu-item key="review">
-        <CheckSquareOutlined />
-        <span>审核任务</span>
+        <router-link to="/review">
+          <CheckSquareOutlined />
+          <span>审核任务</span>
+        </router-link>
       </a-menu-item>
 
     </a-menu>

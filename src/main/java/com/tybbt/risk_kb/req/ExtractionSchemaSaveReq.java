@@ -1,8 +1,8 @@
-package com.tybbt.risk_kb.domain;
+package com.tybbt.risk_kb.req;
 
 import java.util.Date;
 
-public class ExtractionSchema {
+public class ExtractionSchemaSaveReq {
     private Long id;
 
     private Long relateKnowledge;

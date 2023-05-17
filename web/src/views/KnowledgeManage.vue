@@ -18,9 +18,16 @@
           :loading="loading"
           @change="handleTableChange"
       >
+        <template #KBID = "{ text: id }" >
+          <span>K-{{id}}</span>
+        </template>
+
         <template #state="{ text: state }">
           <span>
-            <a-badge :status = "state === 1 ? 'success' : 'error'" :text="state === 1 ? '运行中' : '已过期'"/>
+<!--            <a-badge :status = "state === 1 ? 'success' : 'error'" :text="state === 1 ? '运行中' : '已过期'"/>-->
+            <a-badge v-if="state === 0" status = "error" text="已过期"/>
+            <a-badge v-else-if="state === 1" status = "success" text="运行中"/>
+            <a-badge v-else-if="state === 2" status = "processing" text="审核中"/>
           </span>
         </template>
 
@@ -29,7 +36,7 @@
             <a-tag
                 v-for="tag in tags"
                 :key="tag"
-                :color="tag === '无' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
+                :color="tag === '无' ? 'volcano' : tag === tags[0] ? 'geekblue' : 'green'"
             >
               {{ tag.toUpperCase() }}
             </a-tag>
@@ -38,6 +45,7 @@
         <template v-slot:action="{ record }">
           <span>
             <a-space size="small">
+              <a-button type="primary" @click="showKnowledge(record)">详情</a-button>
               <a-button type="primary" @click="edit(record)">编辑</a-button>
               <a-popconfirm
                   title="删除后不可恢复，确认删除？"
@@ -54,6 +62,62 @@
     </a-layout-content>
   </a-layout>
 
+  <a-drawer
+      title="风险知识详情"
+      v-model="knowledge"
+      width="550"
+      :closable="false"
+      :visible="knowledgeDrawerVisible"
+      @close="onDrawerClose"
+  >
+    <a-descriptions title="Knowledge Info" size="small" bordered :column="2">
+      <a-descriptions-item label="知识编号" :span="3">K-{{knowledge.id}}</a-descriptions-item>
+      <a-descriptions-item label="风险知识名称">{{knowledge.name}}</a-descriptions-item>
+      <a-descriptions-item label="风险知识类别">{{knowledge.category}}</a-descriptions-item>
+      <a-descriptions-item label="生效时间">{{knowledge.activateTime}}</a-descriptions-item>
+      <a-descriptions-item label="失效时间" :span="2">{{knowledge.expireTime}}</a-descriptions-item>
+      <a-descriptions-item label="运行状态" :span="3">
+        <a-badge v-if="knowledge.state === 0" status = "error" text="已过期"/>
+        <a-badge v-else-if="knowledge.state === 1" status = "success" text="运行中"/>
+        <a-badge v-else-if="knowledge.state === 2" status = "processing" text="审核中"/>
+      </a-descriptions-item>
+      <a-descriptions-item label="创建者">{{knowledge.manager}}</a-descriptions-item>
+      <a-descriptions-item label="关联业务员1">{{knowledge.reviewer1}}</a-descriptions-item>
+      <a-descriptions-item label="关联业务员2">{{knowledge.reviewer2}}</a-descriptions-item>
+      <a-descriptions-item label="关联业务员3">{{knowledge.reviewer3}}</a-descriptions-item>
+      <a-descriptions-item label="知识数量" :span="3">{{knowledge.number}}</a-descriptions-item>
+      <a-descriptions-item label="参数列表">
+        {{schemaString}}
+      </a-descriptions-item>
+    </a-descriptions>
+    <a-button type="primary" @click="showKnowledgeList">查看详细知识表单</a-button>
+    <a-drawer
+        title="知识表单详情"
+        width="940"
+        :closable="false"
+        :visible="knowledgeListDrawerVisible"
+        @close="onListDrawerClose"
+    >
+      <a-table :columns="schemaColumns"
+               :data-source="knowledgeItems">
+
+        <template v-slot:action> </template>
+      </a-table>
+
+    </a-drawer>
+  </a-drawer>
+
+  <a-modal
+      v-model:visible="modalReviewVisible"
+      title="提交审核成功"
+      @ok="handleReviewOK"
+      width="80%"
+      wrapClassName="full-modal"
+  >
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+    <p>Some contents...</p>
+  </a-modal>
 
   <a-modal
       title="新增风险知识"
@@ -96,8 +160,6 @@
         </a-select>
       </a-form-item>
 
-
-
       <a-form-item label="生效时间">
         <a-input v-model:value="knowledge.activateTime" />
       </a-form-item>
@@ -128,6 +190,18 @@ export default defineComponent({
     const route = useRoute();
     const categories = ref();
     const users = ref()
+    const modalReviewVisible = ref(false);
+
+    const pStyle = {
+      fontSize: '16px',
+      color: 'rgba(0,0,0,0.85)',
+      lineHeight: '24px',
+      display: 'block',
+      marginBottom: '16px',
+    };
+    const pStyle2 = {
+      marginBottom: '24px',
+    };
 
     const pagination = ref({
       current: 0,
@@ -139,7 +213,8 @@ export default defineComponent({
       {
         title: 'ID',
         key: 'id',
-        dataIndex: 'id'
+        dataIndex: 'id',
+        slots: { customRender: 'KBID' }
       },
       {
         title: '名称',
@@ -234,7 +309,7 @@ export default defineComponent({
         loading.value = false;
         const data = response.data;
         if (data.success) {
-          knowledges.value = Tool.copyKnowledges(data.content);
+          knowledges.value = Tool.copyKnowledges(data.content.list);
           console.log("知识列表：",knowledges.value)
 
           pagination.value.current = params.page;
@@ -265,7 +340,7 @@ export default defineComponent({
     const handleModelOK = () => {
       modelLoading.value = true;
       const newKL = Tool.reverseKnowledge(knowledge.value);
-      console.log("新增知识：", newKL)
+      // console.log("新增知识：", newKL)
       axios.post("/knowledge/management/save", newKL).then((response) => {
         modelLoading.value = false;
         const data = response.data; // data = CommonResp
@@ -294,6 +369,14 @@ export default defineComponent({
             size: pagination.value.pageSize
           });
     };
+
+    const showReviewModal = () => {
+      modalReviewVisible.value = true
+    }
+
+    const handleReviewOK = () => {
+      modalReviewVisible.value = false
+    }
 
     /**
      * 编辑页面
@@ -328,6 +411,75 @@ export default defineComponent({
       });
     };
 
+    /***
+     * 使用抽屉展示知识详情
+     */
+    const knowledgeDrawerVisible = ref(false);
+    const knowledgeListDrawerVisible = ref(false);
+
+    const schemaString = ref()
+    const getSchemas = (kid: number) => {
+      axios.get("/knowledge/schema/search/" + kid).then((response)=>{
+        const data = response.data;
+        if (data.success) {
+          schemaString.value = []
+          schemaString.value = Tool.copy(Tool.copy(data.content)[0].schema);
+          console.log("schema: ", schemaString.value)
+        } else {
+          message.error("加载参数列表失败")
+        }
+      })
+    }
+
+    const showKnowledge = (record: any) => {
+      knowledge.value = Tool.reverseKnowledge(record);
+      getSchemas(knowledge.value.id)
+      knowledgeDrawerVisible.value = true;
+      console.log("当前选中：", knowledge.value)
+    }
+
+    const showKnowledgeList = (record: any) => {
+      handleQueryKnowledgeItems();
+      generateSchemaColumns();
+      knowledgeListDrawerVisible.value = true;
+    }
+
+    const knowledgeItems = ref()
+    const schemaColumns: any = []
+    const generateSchemaColumns = () => {
+      schemaColumns.splice(0, schemaColumns.length)
+      console.log("dynamic table head before:",schemaColumns, schemaString.value.length)
+      if (schemaString.value.length > 0) {
+        const arr = JSON.parse(schemaString.value)
+        console.log("schema length:", arr.length)
+        for (let i = 0, len = arr.length; i< len; i++){
+          schemaColumns.push({
+            title: arr[i],
+            key: arr[i],
+            dataIndex: arr[i]
+          })
+        }
+        schemaColumns.push({
+          title: "Action",
+          key: 'action',
+          slots: { customRender: 'action' }
+        })
+      }
+      console.log("dynamic table head:",schemaColumns)
+    }
+
+    const handleQueryKnowledgeItems = () => {
+      console.log("quert items")
+    }
+
+
+    const onDrawerClose = () => {
+      knowledgeDrawerVisible.value = false;
+    }
+
+    const onListDrawerClose = () => {
+      knowledgeListDrawerVisible.value = false;
+    }
 
     onMounted(()=>{
       const name = route.query.name
@@ -339,7 +491,10 @@ export default defineComponent({
           });
     })
 
+
     return {
+      knowledgeItems,
+      schemaColumns,
       knowledges,
       knowledge,
       columns,
@@ -356,7 +511,19 @@ export default defineComponent({
       pagination,
       handleTableChange,
       categories,
-      users
+      users,
+      showKnowledge,
+      knowledgeDrawerVisible,
+      knowledgeListDrawerVisible,
+      onDrawerClose,
+      showKnowledgeList,
+      onListDrawerClose,
+      pStyle,
+      pStyle2,
+      modalReviewVisible,
+      showReviewModal,
+      handleReviewOK,
+      schemaString
     }
   }
 });

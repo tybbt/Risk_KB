@@ -3,8 +3,8 @@
 <mapper namespace="com.tybbt.risk_kb.mapper.ExtractionSchemaMapper">
   <resultMap id="BaseResultMap" type="com.tybbt.risk_kb.domain.ExtractionSchema">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="information_type" jdbcType="INTEGER" property="informationType" />
-    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="relate_knowledge" jdbcType="BIGINT" property="relateKnowledge" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
     <result column="expire_time" jdbcType="DATE" property="expireTime" />
     <result column="schema" jdbcType="VARCHAR" property="schema" />
   </resultMap>
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, information_type, creator, expire_time, `schema`
+    id, relate_knowledge, creator, expire_time, `schema`
   </sql>
   <select id="selectByExample" parameterType="com.tybbt.risk_kb.domain.ExtractionSchemaExample" resultMap="BaseResultMap">
     select
@@ -100,9 +100,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.tybbt.risk_kb.domain.ExtractionSchema">
-    insert into extraction_schema (id, information_type, creator, 
+    insert into extraction_schema (id, relate_knowledge, creator, 
       expire_time, `schema`)
-    values (#{id,jdbcType=BIGINT}, #{informationType,jdbcType=INTEGER}, #{creator,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{relateKnowledge,jdbcType=BIGINT}, #{creator,jdbcType=VARCHAR}, 
       #{expireTime,jdbcType=DATE}, #{schema,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tybbt.risk_kb.domain.ExtractionSchema">
@@ -111,8 +111,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="informationType != null">
-        information_type,
+      <if test="relateKnowledge != null">
+        relate_knowledge,
       </if>
       <if test="creator != null">
         creator,
@@ -128,11 +128,11 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="informationType != null">
-        #{informationType,jdbcType=INTEGER},
+      <if test="relateKnowledge != null">
+        #{relateKnowledge,jdbcType=BIGINT},
       </if>
       <if test="creator != null">
-        #{creator,jdbcType=BIGINT},
+        #{creator,jdbcType=VARCHAR},
       </if>
       <if test="expireTime != null">
         #{expireTime,jdbcType=DATE},
@@ -154,11 +154,11 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.informationType != null">
-        information_type = #{record.informationType,jdbcType=INTEGER},
+      <if test="record.relateKnowledge != null">
+        relate_knowledge = #{record.relateKnowledge,jdbcType=BIGINT},
       </if>
       <if test="record.creator != null">
-        creator = #{record.creator,jdbcType=BIGINT},
+        creator = #{record.creator,jdbcType=VARCHAR},
       </if>
       <if test="record.expireTime != null">
         expire_time = #{record.expireTime,jdbcType=DATE},
@@ -174,8 +174,8 @@
   <update id="updateByExample" parameterType="map">
     update extraction_schema
     set id = #{record.id,jdbcType=BIGINT},
-      information_type = #{record.informationType,jdbcType=INTEGER},
-      creator = #{record.creator,jdbcType=BIGINT},
+      relate_knowledge = #{record.relateKnowledge,jdbcType=BIGINT},
+      creator = #{record.creator,jdbcType=VARCHAR},
       expire_time = #{record.expireTime,jdbcType=DATE},
       `schema` = #{record.schema,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -185,11 +185,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.tybbt.risk_kb.domain.ExtractionSchema">
     update extraction_schema
     <set>
-      <if test="informationType != null">
-        information_type = #{informationType,jdbcType=INTEGER},
+      <if test="relateKnowledge != null">
+        relate_knowledge = #{relateKnowledge,jdbcType=BIGINT},
       </if>
       <if test="creator != null">
-        creator = #{creator,jdbcType=BIGINT},
+        creator = #{creator,jdbcType=VARCHAR},
       </if>
       <if test="expireTime != null">
         expire_time = #{expireTime,jdbcType=DATE},
@@ -202,8 +202,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.tybbt.risk_kb.domain.ExtractionSchema">
     update extraction_schema
-    set information_type = #{informationType,jdbcType=INTEGER},
-      creator = #{creator,jdbcType=BIGINT},
+    set relate_knowledge = #{relateKnowledge,jdbcType=BIGINT},
+      creator = #{creator,jdbcType=VARCHAR},
       expire_time = #{expireTime,jdbcType=DATE},
       `schema` = #{schema,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}

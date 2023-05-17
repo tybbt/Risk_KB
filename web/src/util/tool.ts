@@ -33,6 +33,7 @@ export class Tool {
             return false;
         } else {
             const result = {
+                'id': obj.id,
                 'name': obj.name,
                 'category': obj.category,
                 'manager': obj.managers[0],
@@ -41,6 +42,8 @@ export class Tool {
                 'reviewer1': obj.managers.length > 1 ? obj.managers[1] : null,
                 'reviewer2': obj.managers.length > 2 ? obj.managers[2] : null,
                 'reviewer3': obj.managers.length > 3 ? obj.managers[3] : null,
+                'state': obj.state,
+                'number': obj.number
             }
             return result
         }

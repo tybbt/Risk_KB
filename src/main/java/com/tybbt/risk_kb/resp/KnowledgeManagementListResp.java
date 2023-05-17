@@ -1,8 +1,12 @@
-package com.tybbt.risk_kb.req;
+package com.tybbt.risk_kb.resp;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import java.util.Date;
 
-public class KnowledgeManagementSaveReq {
+public class KnowledgeManagementListResp {
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     private String name;

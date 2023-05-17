@@ -192,63 +192,63 @@ public class ExtractionSchemaExample {
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeIsNull() {
-            addCriterion("information_type is null");
+        public Criteria andRelateKnowledgeIsNull() {
+            addCriterion("relate_knowledge is null");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeIsNotNull() {
-            addCriterion("information_type is not null");
+        public Criteria andRelateKnowledgeIsNotNull() {
+            addCriterion("relate_knowledge is not null");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeEqualTo(Integer value) {
-            addCriterion("information_type =", value, "informationType");
+        public Criteria andRelateKnowledgeEqualTo(Long value) {
+            addCriterion("relate_knowledge =", value, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeNotEqualTo(Integer value) {
-            addCriterion("information_type <>", value, "informationType");
+        public Criteria andRelateKnowledgeNotEqualTo(Long value) {
+            addCriterion("relate_knowledge <>", value, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeGreaterThan(Integer value) {
-            addCriterion("information_type >", value, "informationType");
+        public Criteria andRelateKnowledgeGreaterThan(Long value) {
+            addCriterion("relate_knowledge >", value, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("information_type >=", value, "informationType");
+        public Criteria andRelateKnowledgeGreaterThanOrEqualTo(Long value) {
+            addCriterion("relate_knowledge >=", value, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeLessThan(Integer value) {
-            addCriterion("information_type <", value, "informationType");
+        public Criteria andRelateKnowledgeLessThan(Long value) {
+            addCriterion("relate_knowledge <", value, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("information_type <=", value, "informationType");
+        public Criteria andRelateKnowledgeLessThanOrEqualTo(Long value) {
+            addCriterion("relate_knowledge <=", value, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeIn(List<Integer> values) {
-            addCriterion("information_type in", values, "informationType");
+        public Criteria andRelateKnowledgeIn(List<Long> values) {
+            addCriterion("relate_knowledge in", values, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeNotIn(List<Integer> values) {
-            addCriterion("information_type not in", values, "informationType");
+        public Criteria andRelateKnowledgeNotIn(List<Long> values) {
+            addCriterion("relate_knowledge not in", values, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeBetween(Integer value1, Integer value2) {
-            addCriterion("information_type between", value1, value2, "informationType");
+        public Criteria andRelateKnowledgeBetween(Long value1, Long value2) {
+            addCriterion("relate_knowledge between", value1, value2, "relateKnowledge");
             return (Criteria) this;
         }
 
-        public Criteria andInformationTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("information_type not between", value1, value2, "informationType");
+        public Criteria andRelateKnowledgeNotBetween(Long value1, Long value2) {
+            addCriterion("relate_knowledge not between", value1, value2, "relateKnowledge");
             return (Criteria) this;
         }
 
@@ -262,52 +262,62 @@ public class ExtractionSchemaExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatorEqualTo(Long value) {
+        public Criteria andCreatorEqualTo(String value) {
             addCriterion("creator =", value, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorNotEqualTo(Long value) {
+        public Criteria andCreatorNotEqualTo(String value) {
             addCriterion("creator <>", value, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorGreaterThan(Long value) {
+        public Criteria andCreatorGreaterThan(String value) {
             addCriterion("creator >", value, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorGreaterThanOrEqualTo(Long value) {
+        public Criteria andCreatorGreaterThanOrEqualTo(String value) {
             addCriterion("creator >=", value, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorLessThan(Long value) {
+        public Criteria andCreatorLessThan(String value) {
             addCriterion("creator <", value, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorLessThanOrEqualTo(Long value) {
+        public Criteria andCreatorLessThanOrEqualTo(String value) {
             addCriterion("creator <=", value, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIn(List<Long> values) {
+        public Criteria andCreatorLike(String value) {
+            addCriterion("creator like", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorNotLike(String value) {
+            addCriterion("creator not like", value, "creator");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorIn(List<String> values) {
             addCriterion("creator in", values, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorNotIn(List<Long> values) {
+        public Criteria andCreatorNotIn(List<String> values) {
             addCriterion("creator not in", values, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorBetween(Long value1, Long value2) {
+        public Criteria andCreatorBetween(String value1, String value2) {
             addCriterion("creator between", value1, value2, "creator");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorNotBetween(Long value1, Long value2) {
+        public Criteria andCreatorNotBetween(String value1, String value2) {
             addCriterion("creator not between", value1, value2, "creator");
             return (Criteria) this;
         }

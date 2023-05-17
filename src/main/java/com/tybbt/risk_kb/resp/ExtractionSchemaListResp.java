@@ -1,10 +1,14 @@
-package com.tybbt.risk_kb.domain;
+package com.tybbt.risk_kb.resp;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import java.util.Date;
 
-public class ExtractionSchema {
+public class ExtractionSchemaListResp {
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long relateKnowledge;
 
     private String creator;

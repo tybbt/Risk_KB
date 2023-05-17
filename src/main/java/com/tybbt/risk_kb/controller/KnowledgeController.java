@@ -3,10 +3,7 @@ package com.tybbt.risk_kb.controller;
 import com.tybbt.risk_kb.domain.KnowledgeManagement;
 import com.tybbt.risk_kb.req.*;
 import com.tybbt.risk_kb.resp.*;
-import com.tybbt.risk_kb.service.KnowledgeCommodityService;
-import com.tybbt.risk_kb.service.KnowledgeManagementService;
-import com.tybbt.risk_kb.service.KnowledgeTaxMisreportService;
-import com.tybbt.risk_kb.service.KnowledgeTaxReportService;
+import com.tybbt.risk_kb.service.*;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +18,9 @@ public class KnowledgeController {
     private KnowledgeManagementService knowledgeManagementService;
 
     @GetMapping("/management/list")
-    public CommonResp<List<KnowledgeManagement>> list() {
-        CommonResp<List<KnowledgeManagement>> resp = new CommonResp<>();
-        List<KnowledgeManagement> kML = knowledgeManagementService.list();
+    public CommonResp<PageResp<KnowledgeManagementListResp>> list(KnowledgeManagementQueryReq req) {
+        CommonResp<PageResp<KnowledgeManagementListResp>> resp = new CommonResp<>();
+        PageResp<KnowledgeManagementListResp> kML = knowledgeManagementService.list(req);
         resp.setContent(kML);
         return resp;
     }
@@ -47,6 +44,25 @@ public class KnowledgeController {
     public CommonResp deleteTopKnowledge(@PathVariable Long id){
         CommonResp resp = new CommonResp<>();
         knowledgeManagementService.delete(id);
+        return resp;
+    }
+    // 查看参数表Schema
+    @Resource
+    private ExtractionSchemaService extractionSchemaService;
+
+    @GetMapping("/schema/list")
+    public CommonResp<PageResp<ExtractionSchemaListResp>> listSchema(ExtractionSchemaQueryReq req) {
+        CommonResp<PageResp<ExtractionSchemaListResp>> resp = new CommonResp<>();
+        PageResp<ExtractionSchemaListResp> pageResp = extractionSchemaService.list(req);
+        resp.setContent(pageResp);
+        return resp;
+    }
+
+    @GetMapping("/schema/search/{kid}")
+    public CommonResp<List<ExtractionSchemaListResp>> searchSchema(@PathVariable Long kid) {
+        CommonResp<List<ExtractionSchemaListResp>> resp = new CommonResp<>();
+        List<ExtractionSchemaListResp> listResp = extractionSchemaService.search(kid);
+        resp.setContent(listResp);
         return resp;
     }
 
