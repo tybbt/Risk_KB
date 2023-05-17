@@ -48,7 +48,7 @@
               <a-button type="primary" @click="showKnowledge(record)">详情</a-button>
               <a-button type="primary" @click="edit(record)">编辑</a-button>
               <a-popconfirm
-                  title="删除后不可恢复，确认删除？"
+                  title="删除后将同步删除全部知识表单内容，确认删除？"
                   ok-text="是"
                   cancel-text="否"
                   @confirm="del(record.id)"
@@ -71,12 +71,12 @@
       @close="onDrawerClose"
   >
     <a-descriptions title="Knowledge Info" size="small" bordered :column="2">
-      <a-descriptions-item label="知识编号" :span="3">K-{{knowledge.id}}</a-descriptions-item>
+      <a-descriptions-item label="知识编号" :span="2">K-{{knowledge.id}}</a-descriptions-item>
       <a-descriptions-item label="风险知识名称">{{knowledge.name}}</a-descriptions-item>
       <a-descriptions-item label="风险知识类别">{{knowledge.category}}</a-descriptions-item>
       <a-descriptions-item label="生效时间">{{knowledge.activateTime}}</a-descriptions-item>
       <a-descriptions-item label="失效时间" :span="2">{{knowledge.expireTime}}</a-descriptions-item>
-      <a-descriptions-item label="运行状态" :span="3">
+      <a-descriptions-item label="运行状态" :span="2">
         <a-badge v-if="knowledge.state === 0" status = "error" text="已过期"/>
         <a-badge v-else-if="knowledge.state === 1" status = "success" text="运行中"/>
         <a-badge v-else-if="knowledge.state === 2" status = "processing" text="审核中"/>
@@ -85,12 +85,12 @@
       <a-descriptions-item label="关联业务员1">{{knowledge.reviewer1}}</a-descriptions-item>
       <a-descriptions-item label="关联业务员2">{{knowledge.reviewer2}}</a-descriptions-item>
       <a-descriptions-item label="关联业务员3">{{knowledge.reviewer3}}</a-descriptions-item>
-      <a-descriptions-item label="知识数量" :span="3">{{knowledge.number}}</a-descriptions-item>
+      <a-descriptions-item label="知识数量" :span="2">{{knowledge.number}}</a-descriptions-item>
       <a-descriptions-item label="参数列表">
         {{schemaString}}
       </a-descriptions-item>
     </a-descriptions>
-    <a-button type="primary" @click="showKnowledgeList">查看详细知识表单</a-button>
+    <a-button v-if="knowledge.number > 0" type="primary" @click="showKnowledgeList">查看详细知识表单</a-button>
     <a-drawer
         title="知识表单详情"
         width="940"
@@ -98,8 +98,11 @@
         :visible="knowledgeListDrawerVisible"
         @close="onListDrawerClose"
     >
-      <a-table :columns="schemaColumns"
-               :data-source="knowledgeItems">
+      <a-table :rowKey="record => record.id"
+               :columns="schemaColumns"
+               :data-source="knowledgeItems"
+               :loading="knowledgeItemsVisible"
+      >
 
         <template v-slot:action> </template>
       </a-table>
@@ -185,7 +188,7 @@ export default defineComponent({
   },
   setup() {
     const knowledges = ref();
-    const knowledge = ref();
+    const knowledge: any = ref({number: 0});
     const loading = ref(false);
     const route = useRoute();
     const categories = ref();
@@ -414,6 +417,7 @@ export default defineComponent({
     /***
      * 使用抽屉展示知识详情
      */
+    const knowledgeItemsVisible = ref(false)
     const knowledgeDrawerVisible = ref(false);
     const knowledgeListDrawerVisible = ref(false);
 
@@ -431,9 +435,27 @@ export default defineComponent({
       })
     }
 
+    const knowledgeItems = ref();
+    const getKnowledgeItems = (kid: number) => {
+      knowledgeItemsVisible.value = true;
+      axios.get("/knowledge/basement/list", {params: {kid: kid, page:0, size: 1000}})
+          .then((response) => {
+        knowledgeItemsVisible.value = false;
+        const data = response.data;
+        if (data.success) {
+          console.log("prepare: ", data.content.list, schemaString.value)
+          knowledgeItems.value = Tool.baseKnowledgeTransform(data.content.list, JSON.parse(schemaString.value));
+          console.log("transform items: ", knowledgeItems.value)
+        } else {
+          message.error(data.message)
+        }
+      })
+    }
+
     const showKnowledge = (record: any) => {
       knowledge.value = Tool.reverseKnowledge(record);
       getSchemas(knowledge.value.id)
+      getKnowledgeItems(knowledge.value.id)
       knowledgeDrawerVisible.value = true;
       console.log("当前选中：", knowledge.value)
     }
@@ -444,7 +466,7 @@ export default defineComponent({
       knowledgeListDrawerVisible.value = true;
     }
 
-    const knowledgeItems = ref()
+
     const schemaColumns: any = []
     const generateSchemaColumns = () => {
       schemaColumns.splice(0, schemaColumns.length)
@@ -493,6 +515,7 @@ export default defineComponent({
 
 
     return {
+      knowledgeItemsVisible,
       knowledgeItems,
       schemaColumns,
       knowledges,

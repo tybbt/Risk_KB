@@ -28,6 +28,36 @@ export class Tool {
         }
     }
 
+    public static baseKnowledgeTransform(obj: any, keys: any) {
+        if (Tool.isEmpty(obj)) {
+            return false
+        } else {
+            const items = [];
+            for (let i = 0; i < obj.length ; i++) {
+                if (obj[i].state != 1) {
+                    continue
+                }
+                const result: any = {
+                    'id': obj[i].id,
+                    'kid': obj[i].kid,
+                    'state': obj[i].state
+                }
+                const values = JSON.parse(obj[i].values);
+                console.log("values: ", values)
+                console.log("keys", keys)
+                if (values.length === keys.length) {
+                    for (let j = 0; j < values.length ; j++) {
+                        result[keys[j]] = values[j]
+                    }
+                } else {
+                    continue
+                }
+                items.push(result);
+            }
+            return items;
+        }
+    }
+
     public static reverseKnowledge (obj: any) {
         if (Tool.isEmpty(obj)){
             return false;

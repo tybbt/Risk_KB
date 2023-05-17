@@ -66,6 +66,18 @@ public class KnowledgeController {
         return resp;
     }
 
+    // 基本通用知识形式，仅包含内容，需要依赖抽取框架
+    @Resource
+    private KnowledgeService knowledgeService;
+
+    @GetMapping("/basement/list")
+    public CommonResp<PageResp<KnowledgeQueryResp>> listKnowledge(KnowledgeQueryReq req) {
+        CommonResp<PageResp<KnowledgeQueryResp>> resp = new CommonResp<>();
+        PageResp<KnowledgeQueryResp> pageResp = knowledgeService.list(req);
+        resp.setContent(pageResp);
+        return resp;
+    }
+
     // 税号误报风险知识（黑样本）
     @Resource
     private KnowledgeTaxMisreportService knowledgeTaxMisreportService;

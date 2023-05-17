@@ -49,10 +49,16 @@ insert into knowledge_management (id, name, state, category, link_table_name, ac
 drop table if exists knowledge;
 create table knowledge (
                             id bigint not null comment 'id',
-                            params varchar(150) comment '参数',
+                            kid bigint not null comment 'kid',
+                            state int not null comment '状态',
                             `values` varchar(150) comment '内容',
                             primary key (id)
 ) engine=innodb default charset=utf8mb4 comment='风险知识';
+
+insert into knowledge (id, kid, state, `values`) VALUES (0, 1, 1,'["8月23日", "重庆理文纸业", "H级特优质牛卡", "126g", "5880元/吨"]');
+insert into knowledge (id, kid, state, `values`) VALUES (1, 0, 1,'["箱板纸","出产","200吨纸","2011/01/02"]');
+insert into knowledge (id, kid, state, `values`) VALUES (2, 1, 1,'["9月21日", "东莞金洲纸业", "H级牛卡纸", "190g/200g/230g", "5130元/吨"]');
+insert into knowledge (id, kid, state, `values`) VALUES (3, 0, 1,'["梨木","砍伐","3吨","2011/11/06"]');
 
 drop table if exists tax_report;
 create table tax_report (

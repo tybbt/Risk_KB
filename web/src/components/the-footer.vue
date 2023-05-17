@@ -1,6 +1,6 @@
 <template>
   <a-layout-footer style="text-align: center">
-    Ant Design ©2018 Created by Ant UED
+    海关风险知识管理系统 ©2022 Created by Beijing Information Science & Technology University - Yu Tian 2020020571
   </a-layout-footer>
 </template>
 <script>
