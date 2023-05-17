@@ -75,7 +75,7 @@
       <a-descriptions-item label="风险知识名称">{{knowledge.name}}</a-descriptions-item>
       <a-descriptions-item label="风险知识类别">{{knowledge.category}}</a-descriptions-item>
       <a-descriptions-item label="生效时间">{{knowledge.activateTime}}</a-descriptions-item>
-      <a-descriptions-item label="失效时间" :span="2">{{knowledge.expireTime}}</a-descriptions-item>
+      <a-descriptions-item label="失效时间">{{knowledge.expireTime}}</a-descriptions-item>
       <a-descriptions-item label="运行状态" :span="2">
         <a-badge v-if="knowledge.state === 0" status = "error" text="已过期"/>
         <a-badge v-else-if="knowledge.state === 1" status = "success" text="运行中"/>
